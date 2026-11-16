@@ -1,0 +1,11 @@
+{
+  "id": "legend-001",
+  "title": "示範篇名（非遊戲原文）",
+  "character": "未分類",
+  "tags": ["格式範例"],
+  "summary": "此項目僅示範欄位，請勿直接加入正式目錄。",
+  "file": "texts/legend-001-example.txt",
+  "spoiler": true,
+  "source": "格式範例，非遊戲原文",
+  "order": 1
+}

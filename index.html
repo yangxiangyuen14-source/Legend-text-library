@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="以書卷之姿，重讀一段江湖。匯入 TXT、整理章節，在私人瀏覽器內閱讀你的傳奇。">
+  <meta name="theme-color" content="#f4ecdd">
+  <title>活俠傳・傳奇文本藏書閣</title>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <script type="module" src="./assets/js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳至主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="#" id="home-link"><span class="seal" aria-hidden="true">俠</span><span>活俠傳<span class="brand-sub">傳奇文本藏書閣</span></span></a>
+    <nav aria-label="主要導覽"><a href="#main">藏書閣</a><a href="#about">關於本站</a><span class="nav-note">一卷在手，江湖在心</span></nav>
+  </header>
+  <main id="main">
+    <section id="landing" aria-labelledby="hero-title">
+      <div class="hero">
+        <div class="hero-copy"><p class="eyebrow">江湖留字 · 傳奇成卷</p><h1 id="hero-title">你的江湖，<br>值得<span class="red">細讀。</span></h1><p class="hero-description">將一段傳奇，收進一卷書裡。<br>匯入你的文字檔，整理章節，循著目錄重訪故事。</p><div class="hero-actions"><button class="primary" id="hero-upload">匯入我的傳奇 <span aria-hidden="true">↗</span></button><button class="text-button" id="sample-open">先讀一卷範例 <span aria-hidden="true">→</span></button></div><p class="privacy-note"><span aria-hidden="true">◇</span> 檔案僅在此瀏覽器處理，不傳送至伺服器。</p></div>
+        <div class="book-scene" aria-hidden="true"><div class="mountain mountain-back"></div><div class="mountain mountain-front"></div><div class="book-shadow"></div><div class="book"><div class="binding"><i></i><i></i><i></i><i></i></div><div class="book-label"><span>江湖一夢</span><strong>傳奇卷</strong><small>藏書閣 · 私藏</small></div><span class="book-stamp">一字<br>一生</span><span class="book-line">故事未盡　且翻下頁</span></div><span class="scene-caption">紙上江湖 · 卷中人生</span></div>
+      </div>
+      <div class="section-rule"><span>開 卷 之 前</span><span class="muted">READ YOUR OWN LEGEND</span></div>
+      <div class="features"><article><span class="feature-number">壹</span><div><h2>帶來你的故事</h2><p>支援 TXT 與中文檔名。<br>UTF-8、Big5 皆可選擇。</p></div></article><article><span class="feature-number">貳</span><div><h2>讓長文井然有序</h2><p>辨識章標，或依空行分段。<br>章節名稱與邊界由你決定。</p></div></article><article><span class="feature-number">參</span><div><h2>留一處安心細讀</h2><p>目錄跳轉、字級調整。<br>保留原文，不改寫你的傳奇。</p></div></article></div>
+    </section>
+
+    <section class="import-panel" aria-labelledby="import-title">
+      <div><p class="eyebrow">從一份文字檔開始</p><h2 id="import-title">開啟一卷傳奇</h2><p>選取 TXT 後，先預覽分章，再開始閱讀。單檔上限 5 MiB。</p></div>
+      <div class="import-controls"><label for="encoding">文字編碼</label><select id="encoding"><option value="utf-8">UTF-8（預設）</option><option value="big5">Big5</option></select><button class="primary" id="choose-file">選擇 TXT <span aria-hidden="true">＋</span></button><input id="file-input" type="file" accept=".txt,text/plain" hidden><button id="retry-file" class="text-button" hidden>以目前編碼重試</button></div>
+      <p class="storage-note">重新整理後，檔案、分章調整與閱讀進度將清除。文本可能含完整劇透，預覽前會再次確認。</p>
+      <p id="file-info" class="file-info" hidden></p><p id="status" role="status" aria-live="polite"></p><p id="error" class="error" role="alert" hidden></p>
+    </section>
+
+    <section id="preview" class="workspace" aria-labelledby="preview-title" hidden>
+      <div class="workspace-heading"><div><p class="eyebrow">整理書卷</p><h2 id="preview-title" tabindex="-1">分章預覽</h2></div><span id="preview-count" class="badge"></span></div>
+      <label class="field-label" for="book-title">書卷顯示名稱</label><input id="book-title" class="wide-input" maxlength="200">
+      <p id="detection-note" class="notice"></p>
+      <div class="preview-toolbar"><label for="split-mode">分章方式</label><select id="split-mode"><option value="auto">依章節標題</option><option value="blank-line">依空行分段（暫定）</option><option value="whole">整篇閱讀</option></select><button id="reset-split">重設分章</button><button id="show-lines">查看原文行號</button></div>
+      <p class="hint">取消勾選起點會合併至前一章。名稱只影響目錄，不修改原文；第一個起點必須保留。</p>
+      <div id="chapter-editor" class="chapter-editor"></div>
+      <div class="manual-controls"><label for="start-line">新增起始行</label><input id="start-line" type="number" min="2" placeholder="行號"><label for="manual-title">章節名稱</label><input id="manual-title" maxlength="100" placeholder="例如：分段 003"><button id="add-start">新增起點</button></div>
+      <pre id="line-preview" class="line-preview" hidden tabindex="0" aria-label="含行號原文"></pre>
+      <div class="preview-bottom"><span class="hint">確認章節與編碼正確後，即可開卷。</span><button class="primary" id="start-reading">確認分章並開始閱讀 →</button></div>
+    </section>
+
+    <section id="reader" class="workspace" aria-labelledby="reader-book-title" hidden>
+      <div class="workspace-heading"><div><p class="eyebrow">正在細讀</p><h2 id="reader-book-title"></h2></div><button id="re-edit">重新分章</button></div>
+      <div class="reading-layout"><aside class="toc-panel"><details id="toc-details" open><summary>卷中目錄 <span id="toc-count"></span></summary><label class="sr-only" for="toc-search">搜尋章節名稱</label><input id="toc-search" type="search" placeholder="搜尋章節名稱…"><nav id="toc" aria-label="章節目錄"></nav></details></aside><article class="reading-page"><div class="reading-top"><span id="reading-position" class="eyebrow"></span><div class="font-controls" aria-label="閱讀字級"><button id="font-smaller" aria-label="縮小字級">A−</button><span id="font-size">20px</span><button id="font-larger" aria-label="放大字級">A＋</button></div></div><h3 id="chapter-title" tabindex="-1"></h3><div id="chapter-text" class="chapter-text"></div><div class="chapter-navigation"><button id="previous">← 上一章</button><span id="chapter-counter"></span><button id="next">下一章 →</button></div></article></div>
+      <p class="storage-note">此書卷僅保留在目前分頁。重新整理將清除檔案與閱讀進度。</p>
+    </section>
+
+    <section id="about" class="about"><span class="small-seal" aria-hidden="true">藏</span><div><h2>以文字，留住一段江湖。</h2><p>這是一個非官方的《活俠傳》傳奇文本閱讀工具。帶來你自己的 TXT，讓長篇文字成為容易翻閱的書卷。文本與作品權利仍屬各權利人；本站不提供遊戲原文下載。</p></div><span class="about-note">不改原文<br>只理書卷</span></section>
+  </main>
+  <footer><span>活俠傳・傳奇文本藏書閣</span><span>非官方閱讀工具 · 本機處理 · 不自動儲存</span></footer>
+  <dialog id="spoiler-dialog" aria-labelledby="spoiler-title"><form method="dialog"><p class="eyebrow">開卷提醒</p><h2 id="spoiler-title">接下來，可能是完整的江湖。</h2><p>分章預覽會顯示文字片段，可能包含劇情。你願意繼續查看嗎？</p><p class="hint">若已有書卷，新檔案驗證成功後才會取代它；目前的分章調整不會自動保存。</p><div class="dialog-actions"><button value="cancel">暫不開啟</button><button class="primary" value="continue">確認，查看文本</button></div></form></dialog>
+  <noscript><p class="error">這個閱讀工具需要啟用 JavaScript，才能在本機解析 TXT。</p></noscript>
+</body>
+</html>
